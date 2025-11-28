@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+</head>
+<body>
+
+<h2>Student Registration Form</h2>
+
+<form>
+    <label for="roll">Roll No:</label>
+    <input type="text" id="rno" name="roll"><br><br>
+
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name"><br><br>
+
+    <label for="gender">Gender:</label>
+    <input type="radio" id="male" name="gender" value="Male"> Male
+    <input type="radio" id="female" name="gender" value="Female"> Female
+    
+<br>
+<br>
+    <label for="contact">Contact No:</label>
+    <input type="text" id="cno" name="contact"><br><br>
+
+    <label for="course">Course:</label>
+    <select id="course" name="course">
+        <option value="">--Select Course--</option>
+        <option value="BCA">BCA</option>
+        <option value="BSc">BSc</option>
+        <option value="BA">BA</option>
+        <option value="BCom">BCom</option>
+    </select><br><br>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"><br><br>
+
+    <button type="submit" id="btn">Submit</button>
+</form>
+<table border="2px" width="500px">
+    <thead>
+        <tr>
+            <th>
+                No
+            </th>
+            <th>NAME</th>
+            <th>Gender</th>
+            <th>Cno</th>
+            <th>Course</th>
+            <th>Email</th>
+            
+        </tr>
+    </thead>
+</table>
+
+<script>
+    class Student{
+        constructor(rno,name,gen,cno,course,email){
+            this.rno=rno;
+            this.name=name;
+            this.gen=gen;
+            this.cno=cno;
+            this.course=course;
+            this.email=email;
+        }
+    }
+
+    class StudentManagement{
+        constructor (){
+            this.classroom=[];
+        }
+        addStudent(){
+            let rno=document.getElementById('rno').value;
+            let name=document.getElementById('name').value;
+            let gen= document.querySelector('input[name="gender"]:checked')?.value || "";
+            let cno=document.getElementById('cno').value;
+            let corse=document.getElementById('course').value;
+            let email=document.getElementById('email').value;
+            console.log(rno,name,gen,cno,corse,email);
+            this.display();
+        }
+        display(){
+            let std=new Student(rno,name,gen,cno,corse,email);
+
+            this.classroom+=std;
+            console.log(this.classroom);
+        }
+    }
+
+    let btn=document.getElementById('btn').addEventListener('click',function(e){
+        e.preventDefault();
+        let obj=new StudentManagement();
+        obj.addStudent();
+    })
+</script>
+
+</body>
+</html>

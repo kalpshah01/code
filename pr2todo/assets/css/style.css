@@ -1,0 +1,97 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Background */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1b0036, #30004a, #12001f);
+  color: white;
+}
+
+/* Title */
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+  text-shadow: 0 0 12px #c471ff;
+}
+
+/* Main Button Container (your .container) */
+.container {
+  background: rgba(255, 255, 255, 0.12);
+  padding: 30px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(20px);
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  justify-content: center;
+  box-shadow: 0 8px 35px rgba(0, 0, 0, 0.4);
+}
+
+/* Buttons (your plain <button>) */
+.container button {
+  padding: 12px 24px;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: white;
+
+  background: linear-gradient(135deg, #7a00c9, #ff2bad);
+  box-shadow: 0 4px 20px rgba(255, 0, 160, 0.4);
+
+  cursor: pointer;
+  transition: 0.25s ease-in-out;
+}
+
+/* Hover effect */
+.container button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 7px 25px rgba(255, 0, 180, 0.6);
+}
+
+/* Click effect */
+.container button:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(255, 0, 180, 0.4);
+}
+
+/* Result text */
+#result {
+  margin-top: 25px;
+  font-size: 1.8rem;
+  color: #ffd9ff;
+  text-shadow: 0 0 8px #ff9bf7;
+}
+
+/* Input Box Styling */
+.input-box {
+  background: rgba(255, 255, 255, 0.12); /* translucent glass effect */
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(15px);
+  padding: 12px 20px;
+  border-radius: 15px;
+  color: white;
+  font-size: 1rem;
+  outline: none;
+  box-shadow: 0 4px 20px rgba(255, 0, 180, 0.3);
+  transition: 0.3s ease-in-out;
+}
+
+/* Hover/focus effect */
+.input-box:hover,
+.input-box:focus {
+  border-color: #ff2bad;
+  box-shadow: 0 6px 25px rgba(255, 0, 180, 0.6);
+  background: rgba(255, 255, 255, 0.18);
+}
