@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Event Management</title>
+        
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.mi/n.css" rel="stylesheet" > -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.2/css/all.min.css"
+    />
+
+    <style>
+      body {
+        background-image: url(./assets/images/e2.jpg);
+        background-size: cover;
+      }
+      label,
+      h1 {
+        font-weight: bold;
+        text-align: center;
+      }
+      h1 {
+        color: snow;
+      }
+      form {
+        background-color: lightblue;
+        padding: 10px;
+        width: 300px;
+        text-align: center;
+        margin-left: 590px;
+      }
+
+      table {
+        text-align: center;
+        border: 2px solid black;
+        margin-left: 480px;
+        color: gold;
+        background-color: rgb(10, 84, 153);
+        font-size: 18px;
+      }
+      input {
+        background-color: lightyellow;
+      }
+      input:hover {
+        background-color: lightskyblue;
+      }
+      #btn {
+        background-color: white;
+        font-weight: bold;
+      }
+      #btn:hover {
+        background-color: lightgreen;
+        cursor: pointer;
+      }
+      .confirm-btn {
+    background-color: green;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+  }
+  .cancel-btn {
+    background-color: red;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 5px;
+    border: none;
+  }
+    </style>
+  </head>
+  <body>
+    <h1 class="text-center">Event Management</h1>
+    <form>
+      <label for="ename">Event Name</label>
+      <input type="text" id="ename" required />
+      <br /><br />
+      <label for="evenue">Event Venue</label>
+      <input type="text" id="evenue" required />
+      <br />
+      <br />
+      <label for="edate">Event Date</label>
+      <input type="date" id="edate" required />
+      <br /><br />
+      <button id="btn">Submit</button>
+    </form>
+    <br /><br />
+    <table border="2px" width="600px">
+      <thead>
+        <tr>
+          <th>Event no</th>
+          <th>Event Name</th>
+          <th>Event Venue</th>
+          <th>Event Date</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="eventbody"></tbody>
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      let editidx = null;
+      let eventlist = [
+        {
+          id: 1,
+          name: "mahendi",
+          venue: "gadvi party port",
+          date: "2025-01-15",
+        },
+        {
+          id: 2,
+          name: "haldi",
+          venue: "gadvi party port",
+          date: "2025-01-16",
+        },
+        {
+          id: 3,
+          name: "ring-ceremony",
+          venue: "Royal hotel",
+          date: "2025-01-17",
+        },
+        {
+          id: 4,
+          name: "DJ-sangeet",
+          venue: "TR ground",
+          date: "2025-01-19",
+        },
+        {
+          id: 5,
+          name: "Marriage",
+          venue: "The Taj hotel",
+          date: "2025-01-20",
+        },
+      ];
+      let ebody = document.getElementById("eventbody");
+
+      function displayEvent() {
+        ebody.innerHTML = "";
+        eventlist.forEach((event, idx) => {
+          ebody.innerHTML += `<tr>
+                <td>${idx + 1}</td>
+                <td>${event.name}</td>
+                <td>${event.venue}</td>
+                <td>${event.date}</td>
+                <td>
+                  <button onclick="deleteEvent(${idx})"> <i class="fa-solid fa-trash-can"></i> </button> <br /><br>
+                  <button onclick="editEvent(${idx})"><i class="fa-solid fa-pen"></i></button>
+                </td>
+              </tr>`;
+        });
+      }
+
+      function editEvent(idx) {
+        Swal.fire({
+  title: "Edited?",
+  text: "You want to edit this Record?",
+  icon: "question"
+});
+  let s = eventlist[idx];
+  editidx = idx;
+        document.getElementById("ename").value = s.name;
+        document.getElementById("evenue").value = s.venue;
+        document.getElementById("edate").value = s.date;
+        let s1 = {
+          id: s.id,
+          name: document.getElementById("ename").value,
+          venue: document.getElementById("evenue").value,
+          date: document.getElementById("edate").value,
+        };
+        eventlist.splice(idx, 1, s1);
+        displayEvent();
+      }
+      function deleteEvent(idx) {
+        const swalWithBootstrapButtons = Swal.mixin({
+          customClass: {
+            confirmButton: "confirm-btn",
+            cancelButton: "cancel-btn",
+          },
+          buttonsStyling: false,  
+        });
+        swalWithBootstrapButtons
+        .fire({
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, delete it!",
+            cancelButtonText: "No, cancel!",
+            reverseButtons: true,
+          })
+          .then((result) => {
+            if (result.isConfirmed) {
+              swalWithBootstrapButtons.fire({
+                title: "Deleted!",
+                text: "Your Record has been deleted.",
+                icon: "success",
+              });
+              eventlist.splice(idx, 1);
+              displayEvent();
+            } else if (
+              /* Read more about handling dismissals below */
+              result.dismiss === Swal.DismissReason.cancel
+            ) {
+              swalWithBootstrapButtons.fire({
+                title: "Cancelled",
+                text: "Your Record  is safe :)",
+                icon: "error",
+              });
+            }
+          });
+        }
+        displayEvent();
+        
+        let btn = document
+        .getElementById("btn")
+        .addEventListener("click", function (e) {
+          let ename = document.getElementById("ename").value.trim();
+          let evenue = document.getElementById("evenue").value.trim();
+          let edate = document.getElementById("edate").value;
+          e.preventDefault();
+          if (ename === "") {
+            Swal.fire({
+              icon: "error",
+              title: "name Required",
+              text: "Please enter your name",
+            });
+            return;
+          }
+          if (evenue === "") {
+            Swal.fire({
+              icon: "error",
+              title: "Venue Required",
+              text: "Please enter your Venue",
+            });
+            return;
+          }
+          if (edate === "") {
+            Swal.fire({
+              icon: "error",
+              title: "Date Required",
+              text: "Please enter your Date",
+            });
+            return;
+          } else {
+            if (editidx != null) {
+              eventlist[editidx] = {
+                id: eventlist[editidx].id,
+                name: ename,
+                venue: evenue,
+                date: edate,
+              };
+              editidx = null;
+            } else {
+              eventlist.push({
+                id: Date.now(),
+                name: ename,
+                venue: evenue,
+                date: edate,
+              });
+            }
+          }
+                 Swal.fire({
+  title: "Submited Successfully!",
+  icon: "success",
+  draggable: true
+});
+          displayEvent();
+          console.log(ename, evenue, edate);
+        });
+    </script>
+  </body>
+</html>
