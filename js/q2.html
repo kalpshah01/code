@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Project -2 enter string is anagrams of each other</h1>
+    <input type="text" id="data">
+    <input type="text" id="data1">
+    <button id="btn">click me</button>
+    <h2 id="result"></h2>
+    <h2 id="result1"></h2>
+    
+    <script>
+        document.getElementById("btn").addEventListener("click",()=>{
+            let str=document.getElementById("data").value;
+            let str2=document.getElementById("data1").value;
+           for(let i=0;i<str.length;i++){
+           for(let j=str2.length;j>=0;j--){
+            if(str[i]===str2[j]){
+                document.getElementById("result").innerText="The given strings are anagrams";
+            }
+            else{
+                document.getElementById("result1").innerText="The given strings are not anagrams";
+            }
+        
+    
+    }
+}   
+  }  );
+        
+    </script>
+</body>
+</html>

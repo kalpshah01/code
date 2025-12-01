@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>form validation</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <style>
+      body{
+        background-color:cadetblue;
+        background-image: url(./assetes/images/form.jpg);
+      }
+      .container {
+        width: 430px;
+        height: 400px;
+        
+      }
+     form{
+      margin-left: 55px;
+      
+      
+      color:rgb(254, 248, 242);
+      width: 450px;
+     }
+     table :hover{
+      background-color: lightgray;
+      color: darkblue;
+
+    }
+
+table,th,td{
+      border: 2px solid black;
+      padding: 10px;
+      margin-left: auto;
+      margin-right: auto;
+      
+     }    
+     button{
+      margin-top: 25px;
+     }
+    h1{
+      color:rgb(254, 248, 242);
+      margin-left: 138px;
+    }
+    h1:hover{
+      background-color: lightgray;
+      color: darkblue;
+    }
+    </style>
+  </head>
+  <body>
+    <h1 class="text-center my-5">Form validation</h1>
+    <div class="container">
+      <form action="" class="text-center">
+        <table>
+          <tbody class="text-center">
+            <tr>
+              <th>Username</th>
+              <td>
+                <input
+                  type="text"
+                  id="username"
+                  name="username"
+                  placeholder="Enter username"
+                  required
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <th><label for="email" name="email">Email</label></th>
+              <td>
+                <input
+                  type="text"
+                  id="email"
+                  name="email"
+                  placeholder="Enter email"
+                  required
+                />
+              </td>
+            </tr>
+            <tr>
+              <th><label for="age" name="age">Age</label></th>
+              <td>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  placeholder="Enter age"
+                  required
+                />
+              </td>
+            </tr>
+<tr>
+              <th><label for="gender" name="gender">Gender</label></th>
+              <td>
+                <input type="radio" id="male" name="gender" value="male">Male
+                <input type="radio" id="female" name="gender" value="female">Female
+              </td>
+            </tr>
+            <tr>
+              <th><label for="course" name="course">Course Name</label></th>
+              <td>
+                <select name="course" id="course" required>
+                  <option value="select any course">select any course</option>
+                  <option value="fullstack developer">
+                    fullstack developer
+                  </option>
+                  <option value="mern stack developer">
+                    mern stack developer
+                  </option>
+                </select>
+              </td>
+            </tr>
+
+            <tr>
+              <th><label for="cno" name="cno">Contact Number</label></th>
+              <td>
+                <input
+                  type="text"
+                  id="cno"
+                  name="cno"
+                  placeholder="Enter contact number"
+                  required
+                />
+              </td>
+            </tr>
+            
+            <tr>
+              <th><label for="hobby" name="hobby">Hobby</label></th>
+              <td>
+                <input type="checkbox" id="reading" name="hobby" value="reading">Reading
+                <input type="checkbox" id="traveling" name="hobby" value="traveling">Traveling
+                <input type="checkbox" id="gaming" name="hobby" value="gaming">Gaming
+              </td>
+            </tr>
+
+
+            
+            <tr>
+              <th><label for="pass" name="pass">Password</label></th>
+              <td>
+                <input
+                  type="password"
+                  id="pass"
+                  name="pass"
+                  placeholder="Enter password"
+                  required
+                />
+              </td>
+            </tr>
+
+            <tr>
+              <th>
+                <label for="conpass" name="conpass">Confirm Password</label>
+              </th>
+              <td>
+                <input
+                  type="password"
+                  id="conpass"
+                  name="conpass"
+                  placeholder="Confirm password"
+                  required
+                />
+              </td>
+            </tr>
+
+          </tbody>
+        </table>
+        <button id="btn" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <script src="./assetes/js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+      $(document).ready(function () {
+        $("#btn").on("click", function (e) {
+          e.preventDefault();
+          // alert("form submitted successfully");
+          let name = document.getElementById("username").value.trim();
+          let email = document.getElementById("email").value.trim();
+          let age = document.getElementById("age").value.trim();
+          let course = document.getElementById("course").value.trim();
+          let cno = document.getElementById("cno").value.trim();
+          let pass = document.getElementById("pass").value.trim();
+          let conpass = document.getElementById("conpass").value.trim();
+          let gender = $('input[name="gender"]:checked').val();
+        let hobbies= $('input[name="hobby"]:checked').length;
+
+          if (name === "") {
+            Swal.fire({
+              icon: "error",
+              title: "You forgot to enter username",
+              text: "Username is required!",
+            });
+            return 0;
+          }
+          let emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+          if (!emailPattern.test(email)) {
+            Swal.fire({
+              icon: "error",
+              title: "Invalid Email",
+              text: "Email is required!",
+            });
+            return;
+          }
+          if (age < 18 || age > 101) {
+            Swal.fire({
+              icon: "error",
+              title: "Age must be more than 18 and less than 101",
+              text: "Please enter a valid age",
+            });
+            return;
+          }
+           if(!gender){
+          Swal.fire({
+            icon: "error", 
+            title:" Gender not selected",
+            text:"Please select your gender!"
+          });
+          return;
+        }
+        
+          if (course === "select any course") {
+            Swal.fire({
+              icon: "error",
+              title: "No Course Selected",
+              text: "Please select a course!",
+            });
+            return;
+          }
+
+          let cnoregex = /^[0-9]{10}$/;
+          if (cno === " " || !cnoregex.test(cno)) {
+            Swal.fire({
+              icon: "error",
+              title: "Contact Number Must be 10 digits",
+              text: "Please enter your contact number!",
+            });
+            return;
+          }
+          if(hobbies === 0){
+          Swal.fire({
+            icon: "error", 
+            title:" No Hobby selected",
+            text:"Please select at least one hobby!"
+          });
+          return;
+        }
+          let passregx = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/;
+          if (pass === "" || !passregx.test(pass)) {
+            Swal.fire({
+              icon: "error",
+              title:
+                "Password should be at least 8 characters long and contain at least one uppercase letter, one lowercase letter, and one number",
+              text: "Please enter your password!",
+            });
+            return;
+          }
+
+          if (pass !== conpass) {
+            Swal.fire({
+              icon: "error",
+              title: "Password Mismatch",
+              text: "Passwords do not match!",
+            });
+            return;
+          }
+           
+          console.log("succesfully submited");
+          Swal.fire({
+            icon: "success",
+            title: "Form Submitted",
+            text: "Your form has been submitted successfully!",
+          });
+      
+      
+      
+      
+        });
+      
+      });
+    </script>
+  </body>
+</html>

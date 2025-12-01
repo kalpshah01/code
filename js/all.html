@@ -1,0 +1,245 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>String & Array Utilities</title>
+  <style>
+    :root{--bg:#f7f9fc;--card:#ffffff;--muted:#6b7280;--accent:#2563eb}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,Arial;margin:0;background:var(--bg);color:#111}
+    header{background:linear-gradient(90deg,#eef2ff,#fff);padding:20px 24px;border-bottom:1px solid #e6edf8}
+    .wrap{max-width:980px;margin:24px auto;padding:0 16px}
+    h1{margin:0 0 6px;font-size:20px}
+    p.lead{margin:0;color:var(--muted);font-size:14px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin-top:18px}
+    .card{background:var(--card);border-radius:12px;padding:16px;box-shadow:0 6px 18px rgba(25,40,70,0.06)}
+    label{display:block;font-size:13px;margin-bottom:6px;color:#0f1724}
+    input[type=text], textarea{width:100%;padding:8px 10px;border:1px solid #e6eef8;border-radius:8px;font-size:14px}
+    textarea{min-height:72px;resize:vertical}
+    .row{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    button{background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer}
+    button.secondary{background:#e6eef8;color:var(--accent)}
+    .out{margin-top:12px;padding:10px;border-radius:8px;background:#f8fafc;border:1px dashed #e6eef8;font-size:14px}
+    small{color:var(--muted)}
+    .muted{color:var(--muted);font-size:13px;margin-top:8px}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <h1>String & Array Utilities</h1>
+      <p class="lead">Small tools: palindrome, anagram, case conversions, longest word, vowel/consonant counts, and array helpers.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="grid">
+      <!-- Palindrome -->
+      <section class="card" id="pal-card">
+        <label for="pal-input">Palindrome check</label>
+        <input id="pal-input" type="text" placeholder="Enter text (e.g. Madam)" />
+        <div class="row">
+          <button onclick="checkPalindrome()">Check</button>
+          <button class="secondary" onclick="document.getElementById('pal-input').value=''">Clear</button>
+        </div>
+        <div class="out" id="pal-out">Result will appear here.</div>
+      </section>
+
+      <!-- Anagram -->
+      <section class="card" id="ana-card">
+        <label>Anagram check</label>
+        <input id="ana-1" type="text" placeholder="First string" />
+        <div style="height:8px"></div>
+        <input id="ana-2" type="text" placeholder="Second string" />
+        <div class="row">
+          <button onclick="checkAnagram()">Check</button>
+          <button class="secondary" onclick="document.getElementById('ana-1').value='';document.getElementById('ana-2').value=''">Clear</button>
+        </div>
+        <div class="out" id="ana-out">Result will appear here.</div>
+      </section>
+
+      <!-- Uppercase -->
+      <section class="card">
+        <label>Convert to UPPERCASE</label>
+        <input id="up-input" type="text" placeholder="Type text..." />
+        <div class="row"><button onclick="toUpper()">Convert</button><button class="secondary" onclick="document.getElementById('up-input').value=''">Clear</button></div>
+        <div class="out" id="up-out">Output will appear here.</div>
+      </section>
+
+      <!-- Lowercase -->
+      <section class="card">
+        <label>Convert to lowercase</label>
+        <input id="low-input" type="text" placeholder="Type text..." />
+        <div class="row"><button onclick="toLower()">Convert</button><button class="secondary" onclick="document.getElementById('low-input').value=''">Clear</button></div>
+        <div class="out" id="low-out">Output will appear here.</div>
+      </section>
+
+      <!-- Toggle case -->
+      <section class="card">
+        <label>Toggle case</label>
+        <input id="toggle-input" type="text" placeholder="Type text..." />
+        <div class="row"><button onclick="toggleCase()">Toggle</button><button class="secondary" onclick="document.getElementById('toggle-input').value=''">Clear</button></div>
+        <div class="out" id="toggle-out">Output will appear here.</div>
+      </section>
+
+      <!-- Longest word -->
+      <section class="card">
+        <label>Find longest word</label>
+        <textarea id="long-input" placeholder="Type a sentence..."> </textarea>
+        <div class="row"><button onclick="longestWord()">Find</button><button class="secondary" onclick="document.getElementById('long-input').value=''">Clear</button></div>
+        <div class="out" id="long-out">Result will appear here.</div>
+      </section>
+
+      <!-- Vowels & Consonants -->
+      <section class="card">
+        <label>Count vowels & consonants</label>
+        <input id="vc-input" type="text" placeholder="Enter text..." />
+        <div class="row"><button onclick="countVowelsConsonants()">Count</button><button class="secondary" onclick="document.getElementById('vc-input').value=''">Clear</button></div>
+        <div class="out" id="vc-out">Result will appear here.</div>
+      </section>
+
+      <!-- Second largest & smallest -->
+      <section class="card">
+        <label>Second largest & second smallest (comma or space separated numbers)</label>
+        <input id="ss-input" type="text" placeholder="e.g. 3, 1, 4, 2, 5" />
+        <div class="row"><button onclick="secondMinMax()">Find</button><button class="secondary" onclick="document.getElementById('ss-input').value=''">Clear</button></div>
+        <div class="out" id="ss-out">Result will appear here.</div>
+      </section>
+
+      <!-- Extract primes -->
+      <section class="card">
+        <label>Extract prime numbers (comma or space separated)</label>
+        <input id="prime-input" type="text" placeholder="e.g. 2,3,4,5,10,11" />
+        <div class="row"><button onclick="extractPrimes()">Extract</button><button class="secondary" onclick="document.getElementById('prime-input').value=''">Clear</button></div>
+        <div class="out" id="prime-out">Result will appear here.</div>
+      </section>
+
+      <!-- Remove duplicates -->
+      <section class="card">
+        <label>Remove duplicates (comma or space separated)</label>
+        <input id="uniq-input" type="text" placeholder="e.g. 1,2,2,3,apple,apple" />
+        <div class="row"><button onclick="removeDuplicates()">Remove</button><button class="secondary" onclick="document.getElementById('uniq-input').value=''">Clear</button></div>
+        <div class="out" id="uniq-out">Result will appear here.</div>
+      </section>
+
+    </div>
+
+    <p class="muted">Notes: trimming and basic normalization are applied (non-alphanumeric characters are ignored for palindrome/anagram operations). For number-array tools, inputs are parsed as integers where possible.</p>
+  </main>
+
+  <script>
+    // Utility: normalize strings for palindrome and anagram checks
+    function normalizeForCompare(s){
+      return (s || '').toLowerCase().replace(/[^a-z0-9]/g,'');
+    }
+
+    function checkPalindrome(){
+      const s = document.getElementById('pal-input').value;
+      const norm = normalizeForCompare(s);
+      if(!s.trim()){document.getElementById('pal-out').textContent='Please enter some text.';return}
+      const rev = norm.split('').reverse().join('');
+      const ok = norm === rev;
+      document.getElementById('pal-out').textContent = ok ? 'Yes — it is a palindrome.' : 'No — not a palindrome.';
+    }
+
+    function checkAnagram(){
+      const a = document.getElementById('ana-1').value;
+      const b = document.getElementById('ana-2').value;
+      if(!a.trim() || !b.trim()){document.getElementById('ana-out').textContent='Please enter both strings.';return}
+      const na = normalizeForCompare(a).split('').sort().join('');
+      const nb = normalizeForCompare(b).split('').sort().join('');
+      const ok = na === nb;
+      document.getElementById('ana-out').textContent = ok ? 'Yes — they are anagrams.' : 'No — not anagrams.';
+    }
+
+    function toUpper(){
+      const s = document.getElementById('up-input').value;
+      document.getElementById('up-out').textContent = s.toUpperCase();
+    }
+    function toLower(){
+      const s = document.getElementById('low-input').value;
+      document.getElementById('low-out').textContent = s.toLowerCase();
+    }
+    function toggleCase(){
+      const s = document.getElementById('toggle-input').value;
+      let out = '';
+      for(const ch of s){
+        out += (ch === ch.toUpperCase()) ? ch.toLowerCase() : ch.toUpperCase();
+      }
+      document.getElementById('toggle-out').textContent = out;
+    }
+
+    function longestWord(){
+      const s = document.getElementById('long-input').value || '';
+      // split on whitespace and punctuation
+      const words = s.match(/[A-Za-z0-9]+(?:'[A-Za-z0-9]+)*/g) || [];
+      if(words.length===0){document.getElementById('long-out').textContent='No words found.';return}
+      let longest = words.reduce((a,b)=> b.length>a.length?b:a, '');
+      document.getElementById('long-out').textContent = `Longest word: "${longest}" (length ${longest.length})`;
+    }
+
+    function countVowelsConsonants(){
+      const s = document.getElementById('vc-input').value || '';
+      const letters = s.toLowerCase().match(/[a-z]/g) || [];
+      let vowels = 0;
+      const vowelSet = new Set(['a','e','i','o','u']);
+      for(const ch of letters){ if(vowelSet.has(ch)) vowels++; }
+      const consonants = letters.length - vowels;
+      document.getElementById('vc-out').textContent = `Vowels: ${vowels} | Consonants: ${consonants}`;
+    }
+
+    // Parse number list: supports comma or space separated values; ignores empty tokens
+    function parseNumberList(raw){
+      if(!raw || !raw.trim()) return [];
+      const parts = raw.split(/[ ,]+/).filter(Boolean);
+      const nums = parts.map(p=>{
+        const n = Number(p);
+        return Number.isFinite(n) ? n : NaN;
+      });
+      // keep only finite numbers
+      return nums.filter(x=>!Number.isNaN(x));
+    }
+
+    function secondMinMax(){
+      const raw = document.getElementById('ss-input').value;
+      const nums = parseNumberList(raw);
+      if(nums.length < 2){document.getElementById('ss-out').textContent='Need at least two numbers.';return}
+      // unique values
+      const uniq = Array.from(new Set(nums)).sort((a,b)=>a-b);
+      if(uniq.length < 2){document.getElementById('ss-out').textContent='Not enough distinct numbers for second min/max.';return}
+      const secondSmallest = uniq[1];
+      const secondLargest = uniq[uniq.length-2];
+      document.getElementById('ss-out').textContent = `Second smallest: ${secondSmallest} | Second largest: ${secondLargest}`;
+    }
+
+    function isPrime(n){
+      if(n <= 1 || !Number.isInteger(n)) return false;
+      if(n <= 3) return true;
+      if(n % 2 === 0) return n === 2;
+      const limit = Math.floor(Math.sqrt(n));
+      for(let i=3;i<=limit;i+=2) if(n % i === 0) return false;
+      return true;
+    }
+
+    function extractPrimes(){
+      const raw = document.getElementById('prime-input').value;
+      const nums = parseNumberList(raw).map(n=>Math.trunc(n));
+      const primes = nums.filter(isPrime);
+      document.getElementById('prime-out').textContent = primes.length ? primes.join(', ') : 'No prime numbers found.';
+    }
+
+    function removeDuplicates(){
+      const raw = document.getElementById('uniq-input').value;
+      if(!raw || !raw.trim()){document.getElementById('uniq-out').textContent='Please enter values.';return}
+      const parts = raw.split(/[ ,]+/).filter(Boolean);
+      const seen = new Set();
+      const unique = [];
+      for(const p of parts){
+        if(!seen.has(p)) { seen.add(p); unique.push(p); }
+      }
+      document.getElementById('uniq-out').textContent = unique.join(', ');
+    }
+
+  </script>
+</body>
+</html>
