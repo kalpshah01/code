@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Project -7 find number of vowels in a string</h1>
+    <input type="text" id="data">
+    <button id="btn">click me</button>
+    <h2 id="result"></h2>
+    <h2 id="result1"></h2>
+    
+    <script>
+        document.getElementById("btn").addEventListener("click",()=>{
+            let str=document.getElementById("data").value;
+            let str2=str.toLowerCase().split("");
+            console.log(str2);
+            let word=0;
+            let c=0;
+           let arr=['a','e','i','o','u'];
+            for(let i=0;i<str2.length;i++){
+           let j=str2[i];
+                 if(arr.includes(j))
+                     word++;
+                    else{
+                        if(j!==" ")
+                            c++;
+                    }
+        }
+    
+    document.getElementById("result").innerText="number of vowels are "+word;
+    document.getElementById("result1").innerText="number of consonants are "+c;
+        
+    }
+        )
+    </script>
+</body>
+</html>

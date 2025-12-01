@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Practice Projects</title>
+
+    <style>
+        body {
+            background: #0d0d0d;
+            color: white;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* EXACT 2 CARDS EACH ROW */
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .card {
+            background: #1a1a1a;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 15px #0ff4;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 20px #0ff8;
+        }
+
+        button {
+            background: #00eeff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        /* Responsive for mobile: 1 card per row */
+        @media(max-width: 600px) {
+            .container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+<h1>JavaScript Projects – Dark Mode</h1>
+
+<div class="container">
+
+    <div class="card">
+        <h2>Palindrome Checker</h2>
+        <img src="" alt="no " align="right">
+        <p>Check if a word reads the same backward.</p>
+        
+        <button onclick="location.href='q1.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Anagram Checker</h2>
+        <p>Check if two strings contain the same letters.</p>
+        <button onclick="location.href='q2.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Convert to Uppercase</h2>
+        <p>Convert text into UPPERCASE.</p>
+        <button onclick="location.href='q3.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Convert to Lowercase</h2>
+        <p>Convert text into lowercase.</p>
+        <button onclick="location.href='q4.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Toggle Case</h2>
+        <p>Swap uppercase ↔ lowercase letters.</p>
+        <button onclick="location.href='q5.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Longest Word Finder</h2>
+        <p>Find the longest word in a sentence.</p>
+        <button onclick="location.href='q6.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Vowel & Consonant Counter</h2>
+        <p>Counts vowels and consonants in a string.</p>
+        <button onclick="location.href='q7.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Second Largest & Second Smallest</h2>
+        <p>Finds 2nd largest and 2nd smallest numbers.</p>
+        <button onclick="location.href='q8.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Prime Numbers Extractor</h2>
+        <p>Extract prime numbers from an array.</p>
+        <button onclick="location.href='q9.html'">Open</button>
+    </div>
+
+    <div class="card">
+        <h2>Remove Duplicate Elements</h2>
+        <p>Display only unique values from inputs.</p>
+        <button onclick="location.href='q10.html'">Open</button>
+    </div>
+
+</div>
+
+</body>
+</html>

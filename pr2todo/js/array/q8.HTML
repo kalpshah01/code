@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Second Largest & Smallest</title>
+</head>
+<body>
+
+<h1>Find Second Largest & Second Smallest</h1>
+
+<div id="inputs"></div>
+<button id="calculateBtn" style="display:none;">Calculate</button>
+
+<h2 id="result-small"></h2>
+<h2 id="result-large"></h2>
+
+<script>
+
+   
+    let count = prompt("How many numbers do you want to enter? (default = 5)", 5);
+    count = Number(count);
+
+    if (!count || count < 2) {
+        document.write("You must enter at least 2 numbers.");
+    } else {
+
+   
+        let htmlInputs = "";
+        for (let i = 0; i < count; i++) {
+            htmlInputs += `<input type="number" class="numBox" placeholder="Number ${i+1}" style="margin:5px;">`;
+        }
+
+        document.getElementById("inputs").innerHTML = htmlInputs;
+
+     
+        document.getElementById("calculateBtn").style.display = "block";
+
+  
+        document.getElementById("calculateBtn").addEventListener("click", () => {
+
+            let boxes = document.querySelectorAll(".numBox");
+            let arr = [];
+
+
+            boxes.forEach(box => arr.push(Number(box.value)));
+
+
+            if (arr.includes(NaN)) {
+                alert("Please enter valid numbers!");
+                return;
+            }
+
+    
+            arr.sort((a, b) => a - b);
+
+            let secondSmallest = arr[1];
+            let secondLargest = arr[arr.length - 2];
+
+
+            document.getElementById("result-small").innerText =
+                "Second Smallest = " + secondSmallest;
+
+            document.getElementById("result-large").innerText =
+                "Second Largest = " + secondLargest;
+        });
+    }
+
+</script>
+
+</body>
+</html>

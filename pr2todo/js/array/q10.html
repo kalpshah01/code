@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates</title>
+</head>
+<body>
+
+<h1>Project 10 – Remove Duplicate Numbers from Array</h1>
+
+<div id="inputs"></div>
+<button id="calculateBtn" style="display:none;">Calculate</button>
+
+<h2 id="result"></h2>
+
+<script>
+
+
+    let count = prompt("How many numbers do you want to enter? (default = 5)", 5);
+    count = Number(count);
+
+    if (!count || count < 1) {
+        document.write("You must enter at least 1 number.");
+    } else {
+
+       
+        let htmlInputs = "";
+        for (let i = 0; i < count; i++) {
+            htmlInputs += `<input type="number" class="numBox" placeholder="Number ${i+1}" style="margin:5px;">`;
+        }
+
+        document.getElementById("inputs").innerHTML = htmlInputs;
+
+  
+        document.getElementById("calculateBtn").style.display = "block";
+
+      
+        document.getElementById("calculateBtn").addEventListener("click", () => {
+
+            let boxes = document.querySelectorAll(".numBox");
+            let arr = [];
+
+
+            boxes.forEach(box => arr.push(Number(box.value)));
+
+
+            if (arr.includes(NaN)) {
+                alert(" Please enter valid numbers!");
+                return;
+            }
+
+            let uniqueArr = [];
+
+            for (let i = 0; i < arr.length; i++) {
+                if (!uniqueArr.includes(arr[i])) {
+                    uniqueArr.push(arr[i]);
+                }
+            }
+
+            document.getElementById("result").innerText =
+                "Array after removing duplicates: " + uniqueArr.join(", ");
+        });
+    }
+
+</script>
+
+</body>
+</html>
