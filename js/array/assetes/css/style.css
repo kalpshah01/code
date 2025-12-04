@@ -23,7 +23,7 @@
         }
 
         input {
-            width: 90%;
+            width: 30%;
             padding: 12px;
             border-radius: 8px;
             border: none;
@@ -56,5 +56,6 @@
             font-size: 22px;
             font-weight: bold;
         }
+
 
     
