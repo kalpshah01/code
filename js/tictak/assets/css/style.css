@@ -1,5 +1,5 @@
       body{
-        background-image: url(../images/tictak.jpg);
+        background-image: url(./assets/images/tictak.jpg);
         /* background-repeat: no-repeat; */
             background-size: cover;
       }
@@ -74,5 +74,6 @@ h1 {
  
 
 }
+
 
 
