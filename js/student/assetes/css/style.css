@@ -1,6 +1,6 @@
 
     body{
-      background-image: url(./assetes/images/s2.jpg);
+      background-image: url("../images/s2.jpg");
       background-size: cover;
       margin-left: 95px;
     
@@ -86,3 +86,4 @@ h2{
     border: none;
 
   }
+
