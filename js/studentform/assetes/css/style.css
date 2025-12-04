@@ -1,6 +1,7 @@
   body{
         background-color:cadetblue;
         background-image: url("../images/form.jpg");
+        background-size:cover;
       }
       .container {
         width: 430px;
@@ -39,4 +40,5 @@ table,th,td{
       color: darkblue;
 
     }
+
 
