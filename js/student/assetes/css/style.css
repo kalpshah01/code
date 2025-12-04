@@ -2,7 +2,9 @@
     body{
       background-image: url("../images/s2.jpg");
       background-size: cover;
-      margin-left: 95px;
+    margin-left: 238px;
+    margin-top: 75px;
+}
     
     }
     .container{
@@ -69,7 +71,9 @@ tr,td{
   color:indigo;
 }
 h2{
-  color:white ;
+    color: lime;
+    margin-right: 150px;
+    margin-bottom: 26px;
 }
    .confirm-btn {
     background-color: green;
@@ -86,4 +90,5 @@ h2{
     border: none;
 
   }
+
 
