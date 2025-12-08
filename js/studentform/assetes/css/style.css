@@ -1,6 +1,6 @@
   body{
         background-color:cadetblue;
-        background-image: url(/assetes/images/form.jpg);
+        background-image: url("../images/form.jpg");
       }
       .container {
         width: 430px;
@@ -37,4 +37,5 @@ table,th,td{
     h1:hover{
       background-color: lightgray;
       color: darkblue;
+
     }
