@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>project 1:- Check for palindrome</title>
+<link rel="stylesheet" href="assetes/css/style.css">
+</head>
+<body>
+
+    <h1>Check for Palindrome or Not</h1>
+
+    <div class="box">
+        <input type="text" id="str" placeholder="Enter a word...">
+        <button id="btn">Check</button>
+        <button onclick="location.href='index.html'">Go Back to main</button>
+        <h2 id="result"></h2>
+    </div>
+
+<script>
+document.getElementById("btn").addEventListener("click", ()=>{
+
+    let str = document.getElementById("str").value.toLowerCase();
+    let len = str.length;
+    let isPal = true;
+
+    for(let i=0; i < len/2; i++){
+        if(str[i] !== str[len - 1 - i]){
+            isPal = false;
+            break;
+        }
+    }
+
+    if(isPal){
+        document.getElementById("result").innerHTML = "Palindrome";
+        document.getElementById("result").style.color = "#00ff9d";
+    } else {
+        document.getElementById("result").innerHTML = "Not Palindrome";
+        document.getElementById("result").style.color = "#ff3c3c";
+    }
+
+});
+</script>
+
+</body>
+</html>

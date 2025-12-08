@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> Project 9 find prime number from array</h1>
+    <input type="text" id="data" placeholder="please give space between numbers">
+    <button id="btn">click me</button>
+    <h2 id="result"></h2>
+    <script>
+        document.getElementById('btn').addEventListener('click', function() {
+        let str = document.getElementById('data').value;
+        if(str === str.toUpperCase()){
+            str=str.toLowerCase();
+        }
+        else{
+            str=str.toUpperCase();
+        }
+        
+        document.getElementById('result').innerText = 'Prime numbers are: ' + str;
+        });
+    </script>
+</body>
+</html>
