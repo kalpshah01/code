@@ -2,7 +2,7 @@
       body {
         background-image: url("../images/e2.jpg");       
         background-size: cover;
-        margin-left: 99px;
+        margin-left: 36px;
       }
       label,
       h1 {
@@ -11,7 +11,9 @@
       }
       h1 {
         color: snow;
-        margin-right: 75px;
+            margin-right: 0px;
+    margin-top: 38px;
+}
       }
       form {
         background-color: lightblue;
@@ -59,4 +61,5 @@
   }
 
     
+
 
