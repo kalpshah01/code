@@ -13,7 +13,7 @@ $(document).ready(()=>{
     
 let result=document.getElementById('result');
     if (isNaN(a) || a <= 0 || a > 10) {
-        alert("sorry not more than 100");
+        alert("sorry not more than 10");
         a = 5;
     }
 
@@ -79,6 +79,7 @@ $("#average").on("click", function () {
     $("#result").text("");
   });
 });
+
 
 
 
