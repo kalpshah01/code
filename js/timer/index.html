@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+
+    <style>
+      body {
+        background: #000000; 
+        font-family: Arial, sans-serif;
+        color: white;
+      }
+
+      #timer {
+        width: 350px;
+        margin: 80px auto;
+        padding: 20px;
+        background: #0f0f0f; 
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      .input {
+        margin-bottom: 15px;
+      }
+
+      input {
+        width: 100%;
+        padding: 8px;
+        border-radius: 5px;
+        border: none;
+        background: #1a1a1a;
+        color: white;
+      }
+.heading{
+  color:white;
+  text-align: center;
+  margin-top: 100px;
+}
+
+      button {
+        margin-right: 5px;
+        margin-top: 10px;
+      }
+
+      #btn {
+        background: #2ecc71; 
+        color: black;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      #pau {
+        background: #f1c40f; 
+        color: black;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      #res {
+        background: #e74c3c; 
+        color: white;
+        font-weight: bold;
+        padding: 10px 20px;
+        border-radius: 5px;
+        border: none;
+        cursor: pointer;
+      }
+
+      #clock {
+        text-align: center;
+        margin-top: 30px;
+        font-size: 40px;
+      }
+
+      
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 9999;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+      }
+
+      .modal-content {
+        background: #121212;
+        padding: 25px;
+        width: 380px;
+        margin: 15% auto;
+        border-radius: 10px;
+        text-align: center;
+        color: white;
+        box-shadow: 0 0 25px rgba(0, 255, 0, 0.2);
+      }
+
+      #closeModal {
+        float: right;
+        cursor: pointer;
+        font-size: 28px;
+        color: #ff4d4d;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1 class="text-center heading">The Timer Clock</h1>
+    <form action="" id="timer">
+      <div class="input">
+        <label for="hour">Hours :-</label>
+        <input type="number" id="hour" />
+      </div>
+      <div class="input">
+        <label for="minus">Minutes:-</label>
+        <input type="number" id="minus" min="0" max="59" />
+      </div>
+      <div class="input">
+        <label for="seconds">Seconds :-</label>
+        <input type="number" id="seconds" min="1" max="60" />
+      </div>
+
+      
+      <button id="btn" type="button">Start Timer</button>
+      <button id="pau" type="button">Pause</button>
+      <button id="res" type="button" onclick="resetTimer()">Re-Start</button>
+    </form>
+
+    <audio
+      src="./assets/audio/slow-cinematic-clock-ticking-357979.mp3"
+      id="music"
+    ></audio>
+    <audio
+      src="./assets/audio/bomb-exploding-with-thunder-378267.mp3"
+      id="stop"
+    ></audio>
+
+    <h1 id="clock"></h1>
+
+
+    <div id="quoteModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" onclick="closePopup()">&times;</span>
+        <h2>Quote of the Moment</h2>
+        <p id="quoteText"></p>
+      </div>
+    </div>
+
+    <script>
+  
+      let totalSeconds = 0;
+      let timerId = null;
+      let isRunning = false;
+      let isPaused = false;
+
+      const music = document.getElementById("music");
+      const boom = document.getElementById("stop");
+      const clock = document.getElementById("clock");
+
+      const quotes = [
+        "Mistake could not afford like forgot ; at line ",
+        "The fronted is heart and backend is mind",
+        "Tea,laptop and high wifi dream of coder",
+        "Dream big and dare to fail.",
+        "Your only limit is your mind.",
+        "Your biggesst failure is you not try to solve problem",
+        "No one see your code only show your result",
+        "It is normal to mistake but accpet mistake and solve it",
+      ];
+
+     function formatTime(totalseconds) {
+       hr = parseInt(totalseconds / 3600); 
+       minus = parseInt((totalseconds % 3600) / 60); 
+       sec = totalseconds % 60;
+        console.log(hr, minus, sec); 
+      return `${hr}: ${minus}:${sec}` 
+    }
+
+      function showQuotePopup() {
+        const randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+        document.getElementById("quoteText").innerText = randomQuote;
+        document.getElementById("quoteModal").style.display = "block";
+      }
+
+      function closePopup() {
+        document.getElementById("quoteModal").style.display = "none";
+      }
+
+      function clearTimer() {
+        if (timerId !== null) {
+          clearInterval(timerId);
+          timerId = null;
+        }
+        isRunning = false;
+      }
+
+      function tick() {
+        if (totalSeconds > 0) {
+          clock.innerHTML = formatTime(totalSeconds);
+          totalSeconds--;
+          music.play();
+        } else {
+         
+          clock.innerHTML = "";
+          music.pause();
+          music.currentTime = 0;
+          clearTimer();
+          boom.play();
+          showQuotePopup(); 
+        }
+      }
+
+      document.getElementById("btn").addEventListener("click", function () {
+       
+        if (isRunning) {
+          return;
+        }
+      
+        if (!isPaused) {
+          const hr = parseInt(document.getElementById("hour").value) || 0;
+          const min = parseInt(document.getElementById("minus").value) || 0;
+          const sec = parseInt(document.getElementById("seconds").value) || 0;
+
+          if (hr === 0 && min === 0 && sec === 0) {
+            alert("Please select at least one second.");
+            return;
+          }
+
+          totalSeconds = hr * 3600 + min * 60 + sec;
+        }
+
+      
+        clock.innerHTML = formatTime(totalSeconds);
+        timerId = setInterval(tick, 1000);
+        isRunning = true;
+        isPaused = false;
+
+        
+        document.getElementById("hour").value = "";
+        document.getElementById("minus").value = "";
+        document.getElementById("seconds").value = "";
+      });
+
+      
+      document.getElementById("pau").addEventListener("click", function () {
+        if (!isRunning) {
+      
+          return;
+        }
+        clearTimer();
+        music.pause();
+        isPaused = true; 
+      });
+
+      
+      function resetTimer() {
+        clearTimer();
+        music.pause();
+        music.currentTime = 0;
+        boom.pause();
+        boom.currentTime = 0;
+
+        totalSeconds = 0;
+        isPaused = false;
+        clock.innerHTML = "";
+
+      
+        document.getElementById("hour").value = "";
+        document.getElementById("minus").value = "";
+        document.getElementById("seconds").value = "";
+
+        closePopup();
+      }
+    </script>
+  </body>
+</html>
