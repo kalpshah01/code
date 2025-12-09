@@ -68,7 +68,7 @@ $("#average").on("click", function () {
   $("#random").on("click", function () {
   
     for (let i = 1; i <= a; i++) {
-      $(`#box${i}`).val(Math.floor(Math.random() * 100));
+      $(`#box${i}`).val(Math.floor(Math.random() * 10));
     }
     $("#result").text("");
   });
@@ -79,6 +79,7 @@ $("#average").on("click", function () {
     $("#result").text("");
   });
 });
+
 
 
 
