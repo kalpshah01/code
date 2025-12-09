@@ -6,13 +6,13 @@ $(document).ready(()=>{
   if (isNaN(a) || a <= 0) {
     alert("Invalid number! Defaulting to 5 boxes.");
     a = 5;
-  } else if (a > 100) {
-    alert("⚠️ You cannot create more than 100 boxes. Defaulting to 10.");
+  } else if (a > 10) {
+    alert("not create more than 10. default is 5");
     a = 100;
   }
     
 let result=document.getElementById('result');
-    if (isNaN(a) || a <= 0 || a > 100) {
+    if (isNaN(a) || a <= 0 || a > 10) {
         alert("sorry not more than 100");
         a = 5;
     }
@@ -79,4 +79,5 @@ $("#average").on("click", function () {
     $("#result").text("");
   });
 });
+
 
