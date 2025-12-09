@@ -1,7 +1,7 @@
 
 
 $(document).ready(()=>{
-  let a = parseInt(prompt("How many input boxes do you want? (Max 100)", "5"));
+  let a = parseInt(prompt("How many input boxes do you want? (Max 10)", "5"));
 
   if (isNaN(a) || a <= 0) {
     alert("Invalid number! Defaulting to 5 boxes.");
@@ -79,5 +79,6 @@ $("#average").on("click", function () {
     $("#result").text("");
   });
 });
+
 
 
