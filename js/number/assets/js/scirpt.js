@@ -7,7 +7,7 @@ $(document).ready(()=>{
     alert("Invalid number! Defaulting to 5 boxes.");
     a = 5;
   } else if (a > 100) {
-    alert("⚠️ You cannot create more than 100 boxes. Defaulting to 100.");
+    alert("⚠️ You cannot create more than 100 boxes. Defaulting to 10.");
     a = 100;
   }
     
@@ -79,3 +79,4 @@ $("#average").on("click", function () {
     $("#result").text("");
   });
 });
+
