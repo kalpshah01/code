@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Timer</title>
+<link rel="stylesheet" href="./assets/css/style.css">
+  </head>
+
+  <body>
+    <h1 class="text-center heading">The Timer Clock</h1>
+    <form action="" id="timer">
+      <div class="input">
+        <label for="hour">Hours :-</label>
+        <input type="number" id="hour" />
+      </div>
+      <div class="input">
+        <label for="minus">Minutes:-</label>
+        <input type="number" id="minus" min="0" max="59" />
+      </div>
+      <div class="input">
+        <label for="seconds">Seconds :-</label>
+        <input type="number" id="seconds" min="1" max="60" />
+      </div>
+
+      
+      <button id="btn" type="button">Start Timer</button>
+      <button id="pau" type="button">Pause</button>
+      <button id="res" type="button" onclick="resetTimer()">Re-Start</button>
+    </form>
+
+    <audio
+      src="./assets/audio/slow-cinematic-clock-ticking-357979.mp3"
+      id="music"
+    ></audio>
+    <audio
+      src="./assets/audio/bomb-exploding-with-thunder-378267.mp3"
+      id="stop"
+    ></audio>
+
+    <h1 id="clock"></h1>
+
+
+    <div id="quoteModal" class="modal">
+      <div class="modal-content">
+        <span id="closeModal" onclick="closePopup()">&times;</span>
+        <h2>Quote of the Moment</h2>
+        <p id="quoteText"></p>
+      </div>
+    </div>
+
+    <script src="./assets/js/index.js"> </script>
+  </body>
+</html>
