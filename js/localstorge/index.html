@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+
+  </head>
+  <body>
+    <h2 class="text-center my-3">Employee Management</h2>
+    <form action="">
+      <div class="input1">
+        <label for="name">Name:-</label>
+        <input type="text" id="name" required />
+      </div>
+      <br />
+      <div class="input1">
+        <label for="email">Email:-</label>
+        <input type="email" id="email" required />
+      </div>
+      <br />
+      <div class="input1">
+        <label for="salary">Salary:-</label>
+        <input type="number" id="salary" required />
+      </div>
+      <br />
+      <div class="input1">
+        <label for="dept">Department</label>
+        <select name="dept" id="dept" required>
+          <option value="">Please Select any department</option>
+          <option value="1">MCA</option>
+          <option value="2">IT</option>
+          <option value="3">DEV</option>
+          <option value="4">HR</option>
+          <option value="5">SE</option>
+        </select>
+      </div>
+      <br />
+      <div class="actions">
+        <button class="btn btn-primary" id="btn">Add employee</button>&nbsp;&nbsp;
+        <a href="./allemployee.html">View All employee</a>
+      </div>
+    </form>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => 
+      {
+       
+        let users = JSON.parse(localStorage.getItem("users")) || [];
+        let btn = document.getElementById("btn");
+        btn.addEventListener("click", function (e) {
+             e.preventDefault();
+          let name = document.getElementById("name").value.trim();
+          let email = document.getElementById("email").value;
+          let salary = document.getElementById("salary").value;
+          let dept = document.getElementById("dept").value;
+          let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+          if(name == ""){
+            alert("Name field cannot be empty");
+            return;
+          }
+          if (regex.test(email)) {
+            console.log("Valid Email address");
+          } else {
+            console.log("Invalid Email address");
+          }
+          if (salary <= 0) {
+            alert("Please enter a valid salary");
+            return;
+          }
+
+          
+
+          console.log(name, email, salary, dept);
+
+          let obj = { id: Date.now(), name, email, salary, dept };
+          console.log(obj);
+          console.log(users);
+          users.push(obj);
+          console.log(users);
+          localStorage.setItem("users", JSON.stringify(users));
+        });
+        
+      });
+    </script>
+  </body>
+</html>
