@@ -1,0 +1,153 @@
+
+
+
+
+body{
+    background-color: #111;
+}
+
+.container{
+    background-color: #171717;
+    color: white;
+    padding: 2rem;
+    width: 40%;
+    margin: 4rem auto;
+    border-radius: 10px;
+}
+
+.weather__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.weather__search{
+    position: relative;
+}
+
+.weather__search i{
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    color: white;
+    font-size: 15px;
+}
+
+input{
+    background-color: #b99e9e;
+    border: none;
+    outline: none;
+    padding: 0.5rem 2.5rem;
+    color: white;
+    border-radius: 5px;
+}
+
+input::placeholder{
+    color: white;
+}
+
+.weather__units{
+    font-size: 1.5rem;
+}
+
+.weather__units span{
+    cursor: pointer;
+}
+
+.weather__body{
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.weather__datetime{
+    font-size: 14px;
+    margin-bottom: 2rem;
+}
+
+.weather__forecast{
+    background-color: #1e1e1e;
+    padding: 0.5rem 1rem;
+    border-radius: 30px;
+    display: inline-block;
+}
+
+.weather__icon img{
+    width: 100px;
+}
+
+.weather__temperature{
+    font-size: 1.75rem;
+}
+
+.weather__minmax{
+    display: flex;
+    justify-content: center;
+}
+
+.weather__minmax p{
+    font-size: 14px;
+    margin: 0.5rem;
+}
+
+.weather__info{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 1rem;
+    margin-top: 3rem;
+}
+
+.weather__card{
+    background-color: #1e1e1e;
+    padding: 1rem;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.weather__card i{
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.weather__card p{
+    font-size: 14px;
+}
+
+button{
+    width: 100px;
+    background-color: white;
+    color: black;
+}
+
+button:hover{
+    background-color: gray;
+    color: white;
+}
+
+@media(max-width: 936px){
+    .container{
+        width: 90%;
+    }
+
+    .weather__header{
+        flex-direction: column;
+    }
+
+    .weather__units{
+        margin-top: 1rem;
+    }
+
+    button{
+        width: 100%;
+        padding: 0.5rem;
+        background-color: black;
+        color: white;
+        border-radius: 5px;
+    }
+}
+
+@media(max-width: 400px){
+    .weather__info{
+        grid-template-columns: none;
+    }
+}

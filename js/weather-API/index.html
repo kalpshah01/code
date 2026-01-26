@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Weather Checker</h1>
+        <div class="weather__header">
+            <form class="weather__search">
+                <input type="text" placeholder="Search for a city..." class="weather__searchform" id="searchcity">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </form> 
+            
+        </div>
+       
+
+        <div class="weather__info" id="weatherbody">
+          
+        </div>
+        <br>
+        <button id="searchbutton">Search</button>
+    </div>
+    <script src="https://kit.fontawesome.com/a692e1c39f.js" crossorigin="anonymous"></script>
+    <script src="app.js"></script>
+    <script>
+        document.getElementById("searchbutton").addEventListener("click",function(){
+
+        
+        let key= "53ec1f8bf6ed32942aee8ce2a3623153";
+        let city=document.getElementById("searchcity").value;
+        fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${key}`)
+        .then((res)=>{
+            return res.json();
+        }).then((data)=>{
+            document.getElementById("weatherbody").innerHTML=`
+            
+            <h3 class="weather__city ">${data.name}, ${data.sys.country}</h3>
+            <br>
+              <div class="weather__card">
+                <i class="fa-solid fa-temperature-full"></i>
+                <div>
+                    <p>Real Feel</p>
+                    <p class="weather__realfeel">${data.main.feels_like}</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-droplet"></i>
+                <div>
+                    <p>Humidity</p>
+                    <p class="weather__humidity">${data.main.humidity}</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-wind"></i>
+                <div>
+                    <p>Wind Speed</p>
+                    <p class="weather__wind">${data.wind.speed}</p>
+                </div>
+            </div>
+            <div class="weather__card">
+                <i class="fa-solid fa-gauge-high"></i>
+                <div>
+                    <p>Pressure</p>
+                    <p class="weather__pressure">${data.main.pressure}</p>
+                </div>
+            </div>
+            `;
+console.log(data);
+        })
+        });
+    </script>
+</body>
+</html>

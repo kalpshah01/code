@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <h1>Corona Virus Details</h1>
+    <input type="text" id="state" placeholder="Enter state name">
+    <br><br>
+    <button id="btn" class="btn btn-primary">Get Details</button>
+    <br><br>
+    <div id="result"></div>
+    <script>
+         const stateData = [];
+         let i;
+        document.getElementById('btn').addEventListener('click',function(){
+            let state=document.getElementById('state').value;
+            let coronabody=document.getElementById('result');
+
+            fetch('https://disease.sh/v3/covid-19/gov/india')
+            .then((res) => {
+                return res.json();
+            }).then(data => {
+
+            const stateData = data.states.find(
+                s => s.state.toLowerCase() === state.toLowerCase()
+            );
+            console.log(stateData);
+            if (!stateData) {
+                coronabody.innerHTML = `<p>State not found</p>`;
+                return;
+            }
+                  ;
+                 coronabody.innerHTML=`
+                 
+            <div class="card-deck text-center">
+                
+  <div class="card blue">
+   
+      <div class="card-body bg-primary text-light rounded">
+        <h5 class="card-title"><i class="fas fa-tachometer-alt fa-2x"></i></h5>
+        <h4 class="card-text">Active Cases</h4>
+        <p class="card-text badge badge-outline-light" id="Active_Cases">${stateData.active}</p>
+      </div>
+    </div>
+    
+  <div class="card teal">
+   
+      <div class="card-body bg-info text-light rounded">
+        <h5 class="card-title"><i class="fas fa-list fa-2x"></i></h5>
+        <h4 class="card-text">Total Cases</h4>
+        <p class="card-text badge badge-outline-light" id="Total_Cases">${stateData.cases}</p>
+      </div>
+    </div>
+    
+  <div class="card yellow">   
+    
+      <div class="card-body bg-warning text-light rounded">
+        <h5 class="card-title"><i class="fas fa-times-circle fa-2x"></i></h5>
+        <h4 class="card-text">Today Active</h4>
+        <p class="card-text badge badge-outline-light" id="Critical_Cases">${stateData.todayActive}</p>
+      </div>
+    </div>
+    
+  <div class="card red">
+      <div class="card-body bg-danger text-light rounded">
+        <h5 class="card-title"><i class="fa fa-times fa-2x"></i></h5>
+        <h4 class="card-text">Total Death</h4>
+        <p class="card-text badge badge-outline-light" id="Total_Death">${stateData.deaths}</p>
+      </div>
+    </div>
+    <div class="card green">
+      <div class="card-body bg-success text-light rounded">
+        <h5 class="card-title"><i class="fas fa-check-square fa-2x"></i></h5>
+        <h4 class="card-text">Recovered Cases</h4>
+        <p class="card-text badge badge-outline-light" id="Recovered_Cases">${stateData.recovered}</p>
+      </div>
+    </div>
+    <div class="card gray">
+      <div class="card-body bg-secondary text-light rounded">
+        <h5 class="card-title"><i class="fas fa-eye fa-2x"></i></h5>
+        <h4 class="card-text">
+Today Recovered
+</h4>
+        <p class="card-text badge badge-outline-light" id="Total_Test_Done">${stateData.todayRecovered}</p>
+      </div>
+    </div>
+  </div>
+            `;
+            });
+        
+        });
+    </script>
+</body>
+</html>

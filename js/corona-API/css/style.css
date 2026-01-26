@@ -1,0 +1,60 @@
+
+body{
+ background-image: url("../images/ChatGPT\ Image\ Jan\ 15\,\ 2026\,\ 09_50_25\ PM.png");
+  text-align: center;
+  font-family: Arial;
+}
+
+.card-deck{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.card{
+  width: 30%;
+  padding: 30px 10px;
+  color: white;
+  border-radius: 8px;
+}
+
+.card p{
+  margin-top: 10px;
+  font-size: 20px;
+  border: 1px solid white;
+  display: inline-block;
+  padding: 5px 15px;
+}
+
+
+button{
+    width: 100px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+}
+input{
+    width: 200px;
+    height: 30px;
+    border-radius: 5px;
+  
+    padding: 5px;
+}
+.blue{
+     background: blue;
+ }
+.teal{
+     background: skyblue; }
+.yellow{
+     background: yellow; 
+    }
+.red{ 
+    background: red;
+}
+.green{ 
+    background: green; 
+}
+.gray{
+     background: gray; 
+    }
